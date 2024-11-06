@@ -102,6 +102,8 @@ class DocumentHelper
                     ],
                     'text'       => $item['text'] ?? '',
                     'discount'   => $item['discount'] ?? null,
+                    'isPercentage'   => $item['isPercentage'] ?? null,
+                    'discountedValue'   => $item['discountedValue'] ?? null,
                     'optional'   => $item['optional'] ?? null,
                     'taxRate'    => $item['taxRate'] ?? $configs['taxRate'],
                 ];
