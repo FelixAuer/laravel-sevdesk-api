@@ -318,7 +318,7 @@ class DocumentHelper
                 'taxRate'              => $parameters['taxRate'] ?? $configs['taxRate'],
                 'taxText'              => $parameters['taxText'] ?? $configs['taxText'],
                 'orderType'            => $parameters['orderType'],
-                'sendDate'             => $parameters['sendDate'] ?? date('Y-m-d H:i:s'),
+                'sendDate'             => $parameters['sendDate'] ?? null,
                 'address'              => $parameters['address'] ?? null,
                 'currency'             => $parameters['currency'] ?? $configs['currency'],
                 'customerInternalNote' => $parameters['customerInternalNote'] ?? null,
