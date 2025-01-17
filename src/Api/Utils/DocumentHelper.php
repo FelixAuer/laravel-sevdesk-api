@@ -246,7 +246,7 @@ class DocumentHelper
                     'id'         => $parameters['paymentMethodId'],
                     'objectName' => 'PaymentMethod',
                 ],
-                'sendDate'             => $parameters['sendDate'] ?? date('Y-m-d H:i:s'),
+                'sendDate'             => $parameters['sendDate'] ?? null,
                 'invoiceType'          => $parameters['invoiceType'] ?? $configs['invoiceType'],
                 'currency'             => $parameters['currency'] ?? $configs['currency'],
                 'showNet'              => $parameters['showNet'] ?? null,
