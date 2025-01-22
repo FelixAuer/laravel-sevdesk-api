@@ -215,11 +215,11 @@ class Contact extends ApiClient
     /**
      * Create customer contact.
      *
-     * @param string $customerName
+     * @param string|null $customerName
      * @param array $parameters
      * @return SevContact
      */
-    public function createCustomer(string $customerName, array $parameters = []): SevContact
+    public function createCustomer(?string $customerName, array $parameters = []): SevContact
     {
         $parameters['name'] = $customerName;
         return SevContact::make($this->create(self::CUSTOMER, $parameters));
