@@ -257,7 +257,7 @@ class DocumentHelper
                 ],
                 'customerInternalNote' => $parameters['customerInternalNote'] ?? null,
             ],
-            'takeDefaultAddress' => 'true',
+            'takeDefaultAddress' => $parameters['takeDefaultAddress'] ?? 'true',
             'invoicePosSave'     => self::getDocumentItems($items, $configs, 'invoice'),
         ];
     }
