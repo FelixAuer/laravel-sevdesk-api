@@ -40,9 +40,9 @@ class ApiClient
 
     public function execute($httpMethod, $url, array $parameters = [])
     {
-        Log::info($httpMethod);
-        Log::info($url);
-        Log::info($parameters);
+        Log::debug($httpMethod);
+        Log::debug($url);
+        Log::debug($parameters);
         try {
             $parameters['token'] = $this->getToken();
             $response = $this->getClient()->{$httpMethod}('api/v1/' . $url, ['json' => $parameters]);
