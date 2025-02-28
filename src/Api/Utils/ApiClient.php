@@ -8,12 +8,11 @@
 namespace Exlo89\LaravelSevdeskApi\Api\Utils;
 
 use Exlo89\LaravelSevdeskApi\Models\SevSequence;
-use Illuminate\Validation\UnauthorizedException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Exlo89\LaravelSevdeskApi\Api\Invoice;
-use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\UnauthorizedException;
 
 class ApiClient
 {
@@ -41,6 +40,9 @@ class ApiClient
 
     public function execute($httpMethod, $url, array $parameters = [])
     {
+        Log::info($httpMethod);
+        Log::info($url);
+        Log::info($parameters);
         try {
             $parameters['token'] = $this->getToken();
             $response = $this->getClient()->{$httpMethod}('api/v1/' . $url, ['json' => $parameters]);
@@ -59,7 +61,6 @@ class ApiClient
             }
             throw new \Exception('Something went wrong.');
         }
-
     }
 
     // ========================= base methods ======================================
@@ -100,12 +101,11 @@ class ApiClient
      * @param string $objectType
      * @return SevSequence
      */
-    protected function getNextSequence(string $objectType = self::INVOICE) : SevSequence
+    protected function getNextSequence(string $objectType = self::INVOICE): SevSequence
     {
         $sequence = $this->_get(Routes::SEQUENCE, ['objectType' => $objectType]);
         return SevSequence::make($sequence);
     }
-
 
     /**
      * Get the pdf file from the given path.
