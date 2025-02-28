@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exlo89\LaravelSevdeskApi\Api\Invoice;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class ApiClient
 {
@@ -46,6 +47,8 @@ class ApiClient
             $responseBody = json_decode((string)$response->getBody(), true);
             return $responseBody['objects'];
         } catch (BadResponseException $exception) {
+            Log::error($exception->getCode());
+            Log::error($exception->getMessage());
             $response = json_decode((string)$exception->getResponse()->getBody(), true);
             if (array_key_exists('error', $response)) {
                 if ($response['error']['code'] == 151) throw new ModelNotFoundException($response['error']['message']);
