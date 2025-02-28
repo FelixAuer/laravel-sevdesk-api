@@ -48,7 +48,7 @@ class ApiClient
             return $responseBody['objects'];
         } catch (BadResponseException $exception) {
             Log::error($exception->getCode());
-            Log::error($exception->getMessage());
+            Log::error($exception->getResponse()->getBody()->getContents());
             $response = json_decode((string)$exception->getResponse()->getBody(), true);
             if (array_key_exists('error', $response)) {
                 if ($response['error']['code'] == 151) throw new ModelNotFoundException($response['error']['message']);
